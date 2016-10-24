@@ -1,7 +1,7 @@
 function LoginController() {
   var ctrl = this;
 
-  ctrl.loginUser = function () {
+  ctrl.loginUser = function() {
 
   };
 }
