@@ -1,8 +1,22 @@
-function LoginController() {
+function LoginController(AuthService) {
   var ctrl = this;
 
-  ctrl.loginUser = function() {
+  ctrl.$onInit = function() {
+    ctrl.error = null;
+    ctrl.user = {
+      email: '',
+      password: ''
+    };
+  };
 
+  ctrl.loginUser = function(event) {
+    return AuthService
+      .login(event.user)
+      .then(function(user) {
+        console.log('SUCCESS', user);
+      }, function(reason) {
+        ctrl.error = reason.message;
+      });
   };
 }
 
