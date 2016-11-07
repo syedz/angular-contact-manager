@@ -13,6 +13,7 @@ import del from 'del';
 import path from 'path';
 import child from 'child_process';
 import sourcemaps from 'gulp-sourcemaps';
+import plumber from 'gulp-plumber';
 
 const exec = child.exec;
 const argv = yargs.argv;
@@ -74,6 +75,10 @@ gulp.task('scripts', ['modules'], () => {
       ...paths.scripts,
       './templates.js'
     ])
+    .pipe(plumber((err) => {
+      console.log('Scripts Task Error');
+      console.log(err);
+    }))
     .pipe(sourcemaps.init())
     .pipe(wrap('(function(angular){\n\'use strict\';\n<%= contents %>})(window.angular);'))
     .pipe(concat('bundle.js'))
