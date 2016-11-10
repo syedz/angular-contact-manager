@@ -1,7 +1,8 @@
 var contactDetail = {
   bindings: {
     contact: '<',
-    onSave: '&'
+    onSave: '&',
+    onUpdate: '&'
   },
   templateUrl: './contact-detail.html',
   controller: 'ContactDetailController'
